@@ -1,7 +1,12 @@
+# main.py
+from logger_config import setup_logger
 from dotenv import load_dotenv
 import os
 import discord
 from discord.ext import commands
+
+# Create a logger for your application
+logger = setup_logger("todoPrezesy")
 
 load_dotenv()  # Load variables from .env file
 
@@ -10,7 +15,7 @@ DISCORD_BOT_TOKEN = os.getenv("DISCORD_BOT_TOKEN")
 if not DISCORD_BOT_TOKEN:
     raise ValueError("DISCORD_BOT_TOKEN is not set in the environment variables")
 
-print("Token loaded successfully!")
+logger.info("Token loaded successfully!")
 
 # Intents for bot
 intents = discord.Intents.default()
@@ -24,7 +29,7 @@ todo_lists = {}
 
 @bot.event
 async def on_ready():
-    print(f"{bot.user} biega i kika!")
+    logger.info(f"{bot.user} biega i kika!")
 
 # Command to add a task
 @bot.command(name="dodaj")
