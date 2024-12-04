@@ -1,8 +1,16 @@
+from dotenv import load_dotenv
 import os
 import discord
 from discord.ext import commands
 
+load_dotenv()  # Load variables from .env file
+
 DISCORD_BOT_TOKEN = os.getenv("DISCORD_BOT_TOKEN")
+
+if not DISCORD_BOT_TOKEN:
+    raise ValueError("DISCORD_BOT_TOKEN is not set in the environment variables")
+
+print("Token loaded successfully!")
 
 # Intents for bot
 intents = discord.Intents.default()
